@@ -1,0 +1,66 @@
+@import "~variables.scss";
+
+$width-dash: 25vw;
+$width-dash-mobile: 100vw;
+
+.menu-dash {
+  z-index: 2;
+  background: linear-gradient(
+    -45deg,
+    #f9ae9f, #f9ae9f 60%, #fcd7cf
+  );
+  // melhorar essas cores
+
+  top: -$header-height;
+  position: absolute;
+  width: $width-dash;
+  height: 100vh;
+  left: -$width-dash;
+  transition: .3s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  @include mobile {
+    left: -$width-dash-mobile;
+    width: $width-dash-mobile;
+  }
+
+  @include mobile(landscape) {
+    left: -$width-dash-mobile;
+    width: $width-dash-mobile;
+  }
+
+  &--toogle {
+    left: 0vw;
+    transition: .3s ease;
+  }
+
+  .options {
+    position: relative;
+    top: calc(1rem + #{$header-height});
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    a {
+      cursor: pointer;
+      color: $crud-pink;
+      font-family: 'Roboto', sans-serif;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: .75rem;
+    }
+  }
+
+  .languages {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    display: relative;
+    margin-bottom: 1rem;
+  }
+}

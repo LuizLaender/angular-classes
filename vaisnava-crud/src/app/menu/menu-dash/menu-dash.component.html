@@ -1,0 +1,14 @@
+<section
+  class="menu-dash"
+  [ngClass]="{'menu-dash--toogle': toggle}">
+
+  <div class="options">
+    <a [routerLink]="['/home']" (click)="handleOption()">Home</a>
+    <a [routerLink]="['/govinda-das']" (click)="handleOption()">Govinda Das</a>
+    <a [routerLink]="['/taruni-gopi']" (click)="handleOption()">Taruni Gopi</a>
+    <a [routerLink]="['/tulasi-das']" (click)="handleOption()">Tulasi Das</a>
+    <a [routerLink]="['/lila-govinda']" (click)="handleOption()">Lila Govinda</a>
+    <a [routerLink]="['/check-list']" (click)="handleOption()">Check-List</a>
+  </div>
+
+</section>

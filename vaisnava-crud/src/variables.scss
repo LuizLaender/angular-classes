@@ -1,0 +1,49 @@
+
+$crud-orange:#ee7752;
+$crud-pink: #e73c7e;
+$crud-blue: #23a6d5;
+$crud-green: #23d5ab;
+
+$blue-lila-govinda: #03a9f4;
+
+$header-height: 4rem;
+$height-less-header: calc(100vh - #{$header-height});
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@mixin mobile($orientation: portrait) {
+
+	@if $orientation == portrait {
+		@media only screen
+		and (min-device-width: 300px)
+		and (max-device-width: 1023px)
+		and (orientation: portrait) {
+			@content;
+		}
+	}
+	@if $orientation == landscape {
+		@media only screen
+		and (min-device-width: 300px)
+		and (max-device-width: 1023px)
+		and (orientation: landscape) {
+			@content;
+		}
+  }
+}
+
+@mixin web() {
+  @media only screen
+  and (min-device-width: 1024px) {
+    @content;
+  }
+}

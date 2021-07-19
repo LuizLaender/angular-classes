@@ -1,0 +1,45 @@
+<div class="popup" *ngIf="show">
+
+  <button class="close" (click)="handleClose()"></button>
+
+  <div class="popup__input-box">
+    <input type="text" id="firstname" autocomplete="off" required [(ngModel)]="user.firstName">
+    <label>First name</label>
+  </div>
+
+  <div class="popup__input-box">
+    <input type="text" id="lastname" autocomplete="off" required [(ngModel)]="user.lastName">
+    <label>Last name</label>
+  </div>
+
+  <div class="popup__input-box">
+    <input type="text" id="email" autocomplete="off" required [(ngModel)]="user.email">
+    <label>Email</label>
+  </div>
+
+  <div class="popup__input-box">
+    <input type="password" id="password" autocomplete="off" required [(ngModel)]="user.password">
+    <label>Password</label>
+  </div>
+
+  <div class="popup__input-box">
+    <input type="date" autocomplete="off" required [(ngModel)]="user.birthday">
+    <label>Birthday</label>
+  </div>
+
+  <!-- Selecting gender -->
+  <div class="gender-form">
+
+    <label for="male">Male</label>
+    <input #male type="radio" name="radsex" (click)="fetchSelectedGender()">
+
+    <label for="female">Female</label>
+    <input #female type="radio" name="radsex" (click)="fetchSelectedGender()">
+
+    <label for="other">Other</label>
+    <input #other type="radio" name="radsex" (click)="fetchSelectedGender()">
+    <input type="text" placeholder="Type your gender" *ngIf="toggle.gender.other" [(ngModel)]="user.gender.otherDescription">
+  </div>
+
+  <button class="signup-btn-popup" (click)="createNewUser(user)">Sign Up</button>
+</div>

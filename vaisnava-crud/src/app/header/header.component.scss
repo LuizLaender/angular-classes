@@ -1,0 +1,18 @@
+@import "~variables.scss";
+
+.header {
+  background: linear-gradient(
+    -45deg,
+    $crud-orange,
+    $crud-pink,
+    $crud-blue,
+    $crud-green
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+
+  width: 100vw;
+  height: $header-height;
+
+
+}

@@ -1,0 +1,153 @@
+@import "~variables.scss";
+
+.popup {
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  height: 64vh;
+  width: 25vw;
+  padding: 1rem;
+  border-radius: 10px;
+
+  background: rgba(0, 0, 0, .8);
+
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+
+  &__close {
+    position: absolute;
+
+    align-self: flex-end;
+    top: 1vh;
+    right: .5vw;
+  }
+
+  /* Positioning the inputs*/
+  &__input-box {
+    position: relative;
+
+    /* Styling the inputs*/
+    input {
+      position: relative;
+      display: flex;
+      justify-content: left;
+      width: 100%;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      letter-spacing: 1px;
+      border: none;
+      border-bottom: 1px solid #fff;
+      outline: none;
+      background: transparent;
+
+      /* Animating the labels*/
+      &:focus ~ label, &:valid ~ label {
+        top: -90%;
+        left: 0;
+        color: $blue-lila-govinda;
+        font-size: 12px;
+      }
+
+      /* ::-webkit-input-placeholder {
+      color: red;
+      text-align: center;
+      } */
+    }
+
+    /* Styling date input */
+    input[type=date]:required:invalid::-webkit-datetime-edit {
+      color: transparent;
+    }
+    input[type=date]::-webkit-inner-spin-button,
+    input[type=date]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+    /* Styling labels*/
+    label {
+      position: relative;
+      top: -35%;
+      left: 0;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      pointer-events: none;
+      transition: .5s;
+    }
+  }
+
+  /* Styling gender section*/
+  .gender-form {
+    label {
+      color: white;
+    }
+
+    input[type=text] {
+      position: relative;
+      display: flex;
+      justify-content: left;
+      width: 100%;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      letter-spacing: 1px;
+      border: none;
+      border-bottom: 1px solid #fff;
+      outline: none;
+      background: transparent;
+    }
+  }
+
+  /* Sign up button from popup*/
+  .signup-btn-popup {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: $blue-lila-govinda;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  /* Close popup */
+  .close {
+    position: absolute;
+    right: 0.8vw;
+    top: 1.8vh;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .close:before, .close:after {
+    position: absolute;
+    top: -.4vh;
+    left: .6vw;
+    content: ' ';
+    width: 0.2rem;
+    height: 1.5rem;
+    background-color: $blue-lila-govinda
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
+
+  /* Mobile responsivity */
+  @include mobile(portrait) {
+    background-color: red;
+  }
+  @include mobile(landscape) {
+    background-color: green;
+  }
+}

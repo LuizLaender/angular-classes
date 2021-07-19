@@ -1,0 +1,37 @@
+<section class="section">
+
+  <button class="btn btn__add" (click)="toggle.create.show()">Adicionar novo Pokemon</button>
+
+  <form-popup
+    [pokemon]="pokemon"
+    [toggle]="toggle.create.status"
+    (onSubmit)="create($event)"
+    (onClose)="toggle.create.hide()"
+  >
+  </form-popup>
+
+  <div class="item-list">
+
+    <ul *ngFor="let item of read(); index as i">
+      <li
+        class="item-list__item">
+          Nome: {{ item.name }} -
+          Ataque: {{ item.atk }} -
+          Defesa: {{ item.def }} -
+          Elemento: {{ item.element }}
+          <button (click)="openUpdatePopup(i, item)">Alterar</button>
+          <button (click)="delete(i)">Deletar</button>
+      </li>
+    </ul>
+
+  </div>
+
+  <form-popup
+    [pokemon]="itemToUpdate.item"
+    [toggle]="toggle.update.status"
+    (onSubmit)="update(itemToUpdate.index, $event)"
+    (onClose)="toggle.update.hide()"
+  >
+  </form-popup>
+
+</section>
