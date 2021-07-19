@@ -1,0 +1,12 @@
+@import "~variables.scss";
+
+.menu {
+  position: absolute;
+
+  &__toogle-button {
+    z-index: 2;
+    position: relative;
+    top: -3.5rem;
+    left: 1rem;
+  }
+}

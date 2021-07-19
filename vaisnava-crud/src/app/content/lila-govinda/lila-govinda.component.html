@@ -1,0 +1,34 @@
+<section class="section">
+
+<!-- Sign up form -->
+  <div>
+    <button class="signup-btn-home" (click)="toggle.signUpPopUp = true">Sign up</button>
+  </div>
+
+  <form-lila
+    [show]="toggle.signUpPopUp"
+    (hide)="toggle.signUpPopUp = false"
+  >
+  </form-lila>
+
+<!-- esboco para lista inscritos -->
+  <div style="height: 25rem; background-color: #F58702;">
+
+    <ul *ngFor="let item of dataBase">
+      <li>
+        First name: {{item.firstName}} |
+        Last name: {{item.lastName}} |
+        Email: {{item.email}} |
+        Birthday: {{item.birthday}} |
+        <!-- {{(item.gender.male) ? 'Male |' : ''}}
+        {{(item.gender.female) ? 'Female |' : ''}}
+        {{(item.gender.other) ? 'Other |' : ''}}
+        {{item.gender.otherDescription}} -->
+      </li>
+      <button (click)="delete()">Delete user</button>
+      <button>Update user</button>
+    </ul>
+
+  </div>
+
+</section>

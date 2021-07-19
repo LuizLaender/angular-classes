@@ -1,0 +1,29 @@
+<div class="popup-bg" *ngIf="toggle">
+  <div class="popup">
+    <div class="popup__input-container">
+      <input type="text" [(ngModel)]="pokemon.name" placeholder="Digite o nome do Pokemon" maxlength="10">
+      <span class="popup__error-msg" *ngIf="errorMsg.hasntName.length > 0">{{errorMsg.hasntName}}</span>
+    </div>
+
+    <div class="popup__input-container">
+      <input type="number" [(ngModel)]="pokemon.atk" placeholder="Digite o ataque do Pokemon">
+      <span class="popup__error-msg" *ngIf="errorMsg.hasntAtk.length > 0">{{errorMsg.hasntAtk}}</span>
+    </div>
+
+    <div class="popup__input-container">
+      <input type="number" [(ngModel)]="pokemon.def" placeholder="Digite a defesa do Pokemon">
+      <span class="popup__error-msg" *ngIf="errorMsg.hasntDef.length > 0">{{errorMsg.hasntDef}}</span>
+    </div>
+
+    <div class="popup__input-container">
+      <input type="text" [(ngModel)]="pokemon.element" placeholder="Digite o elemento do Pokemon">
+      <span class="popup__error-msg" *ngIf="errorMsg.hasntElement.length > 0">{{errorMsg.hasntElement}}</span>
+    </div>
+
+    <div class="popup__buttons">
+      <button class="btn btn__white" (click)="handleSubmit(pokemon)">Concluir</button>
+      <button class="btn btn__white" (click)="handleClose()">Fechar</button>
+    </div>
+
+  </div>
+</div>

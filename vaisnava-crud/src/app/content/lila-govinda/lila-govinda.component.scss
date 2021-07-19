@@ -1,0 +1,31 @@
+@import "~variables.scss";
+
+.div {
+  height: $height-less-header;
+  width: 100vw;
+}
+
+.section {
+  background: #0173A8;
+  height: $height-less-header;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: sans-serif;
+}
+
+/* "Sign up" button from homepage */
+.signup-btn-home {
+  position:absolute;
+  font-size: 30px;
+  top: 20%;
+  left: 12%;
+  outline: none;
+  color: #fff;
+  background: $blue-lila-govinda;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
