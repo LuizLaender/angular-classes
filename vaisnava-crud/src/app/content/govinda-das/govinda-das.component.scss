@@ -1,0 +1,93 @@
+@import "~variables.scss";
+
+.section {
+  height: $height-less-header;
+  width: 100vw;
+
+  background-image: url("../../../assets/pokemon.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  @include mobile(portrait) {
+    background-image: none;
+    background-color: red;
+  }
+
+  @include mobile(landscape) {
+    background-image: none;
+    background-color: green;
+  }
+
+  .item-list {
+    background-color: green;
+
+    &__item {
+      padding: .5rem;
+      margin: .5rem;
+    }
+  }
+}
+
+.btn {
+  cursor: pointer;
+
+  &__add {
+    position: absolute;
+    top: calc(1rem + #{$header-height});
+    left: 1rem;
+
+    height: 3rem;
+    width: 15rem;
+
+    background-color: red;
+    border: none;
+    border-radius: 25px;
+
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  &__white {
+    background-color: white;
+
+    height: 1.5rem;
+
+    border: none;
+    border-radius: 15px;
+
+    color: black;
+
+  }
+}
+
+.shake {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

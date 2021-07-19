@@ -1,0 +1,230 @@
+<section class="section">
+
+  <!-- CRUD: create, read, update and delete a register. -->
+
+  <div class="logo">
+    <img src="../../../assets/taruni-gopi/guru-notes-logo.png" alt="logo">
+  </div>
+
+  <!-- Botões da página inicial -->
+
+  <div class="homepage-buttons-box">
+    <button class="homepage-buttons-box__button" (click)="handleCreateRegister()">Register new devotee</button>
+    <button class="homepage-buttons-box__button" (click)="handleReadRegister()">Show registers</button>
+  </div>
+
+  <!-- Cadastrar novo devoto(a) -->
+  <div class="popup-bg" *ngIf="toggle.createRegister.status">
+
+    <label class="popup-bg__label">Spiritual name
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasSpiritualName.length > 0">
+        {{errorMsg.hasSpiritualName}}
+      </span>
+    </label>
+    <input type="text" class="popup-bg__input" [(ngModel)]="devotee.spiritualName" maxlength="30">
+
+    <label class="popup-bg__label">Social name
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasSocialName.length > 0">
+        {{errorMsg.hasSocialName}}
+      </span>
+    </label>
+    <input type="text" class="popup-bg__input" [(ngModel)]="devotee.socialName" maxlength="50">
+
+    <label class="popup-bg__label">City
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasCity.length > 0">
+        {{errorMsg.hasCity}}
+      </span>
+    </label>
+    <input type="text" class="popup-bg__input" [(ngModel)]="devotee.adress.city" maxlength="50">
+
+    <label class="popup-bg__label">State
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasState.length > 0">
+        {{errorMsg.hasState}}
+      </span>
+    </label>
+    <input type="text" class="popup-bg__input" [(ngModel)]="devotee.adress.state" maxlength="30">
+
+    <label class="popup-bg__label">Country
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasCountry.length > 0">
+        {{errorMsg.hasCountry}}
+      </span>
+    </label>
+    <input type="text" class="popup-bg__input" [(ngModel)]="devotee.adress.country" maxlength="30">
+
+    <label class="popup-bg__label">Phone number
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasPhone.length > 0">
+        {{errorMsg.hasPhone}}
+      </span>
+    </label>
+    <input type="number" class="popup-bg__input" [(ngModel)]="devotee.contact.phone" maxlength="20">
+
+    <label class="popup-bg__label">E-mail
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasEmail.length > 0">
+        {{errorMsg.hasEmail}}
+      </span>
+    </label>
+    <input type="email" class="popup-bg__input" [(ngModel)]="devotee.contact.email" maxlength="40">
+
+    <div class="input-container">
+      <div class="input-container__box">
+          <label class="input-container__label">Date of birth
+            <span class="popup-bg__error-msg" *ngIf="errorMsg.hasDateOfBirth.length > 0">
+              {{errorMsg.hasDateOfBirth | date: "dd/mm/yyyy"}}
+            </span>
+          </label>
+          <input type="date" style="width: 130px;" class="input-box" [(ngModel)]="devotee.dateOfBirth">
+      </div>
+      <div class="input-container__box">
+          <label class="input-container__label">Date of initiation
+            <span class="popup-bg__error-msg" *ngIf="errorMsg.hasDateOfInitiation.length > 0">
+              {{errorMsg.hasDateOfInitiation | date: "dd/mm/yyyy"}}
+            </span>
+          </label>
+          <input type="date" style="width: 130px;" class="input-box" [(ngModel)]="devotee.dateOfInitiation">
+      </div>
+    </div>
+
+    <div class="popup-button-box">
+      <button class="popup-button-box__button" (click)="createRegister(devotee)">Register</button>
+      <button class="popup-button-box__button" (click)="toggle.createRegister.hide()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Pop-up de confirmação do cadastro -->
+  <div class="blur-bg" *ngIf="toggle.registerConfirmation.status">
+    <div class="confirmation-popup" *ngIf="toggle.registerConfirmation.status">
+      <p>Devotee successfully registered!</p>
+      <div class="popup-button-box">
+        <button class="popup-button-box__button" (click)="toggle.registerConfirmation.hide()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exibir cadastros existentes -->
+  <div class="popup-bg" *ngIf="toggle.readRegister.status">
+
+    <div class="popup-bg__scrollbox">
+      <div class="popup-bg__scrollbox__items" *ngFor="let item of readRegister(); index as i">
+          <p>
+            <span style="font-weight: bold;">
+              {{item.spiritualName}}
+            </span>
+            | {{item.socialName}}
+            | {{item.adress.city}}, {{item.adress.state}}, {{item.adress.country}}
+            | {{item.contact.phone}}
+            | {{item.contact.email}}
+            | Date of birth: {{(item.dateOfBirth | date: "dd/MM/yyyy")}}
+            | Date of initiation: {{(item.dateOfInitiation | date: "dd/MM/yyyy")}}
+          </p>
+
+          <div class="popup-button-box">
+            <button class="popup-button-box__button" (click)="openUpdatePopup(item, i)">Update</button>
+            <button class="popup-button-box__button" (click)="confirmDelete(i)">Delete</button>
+          </div>
+      </div>
+
+      <!-- Pop-up de confirmação do exclusão -->
+      <div class="blur-bg" *ngIf="toggle.deleteConfirmation.status">
+        <div class="confirmation-popup delete-confirmation" *ngIf="toggle.deleteConfirmation.status">
+          <p>Are you sure you want to delete this registration?</p>
+          <div class="popup-button-box">
+            <button class="popup-button-box__button" (click)="deleteRegister(itemToDelete.index)">Delete</button>
+            <button class="popup-button-box__button" (click)="toggle.deleteConfirmation.hide()">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="popup-button-box">
+      <button class="popup-button-box__button" (click)="toggle.readRegister.hide(); toggle.deleteConfirmation.hide()">Close</button>
+    </div>
+  </div>
+
+  <div class="popup-bg" *ngIf="toggle.updateRegister.status">
+    
+    <label class="popup-bg__label">Spiritual name
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasSpiritualName.length > 0">
+        {{errorMsg.hasSpiritualName}}
+      </span>
+    </label>
+    <input type="text" class="popup-bg__input" [(ngModel)]="itemToUpdate.item.spiritualName" maxlength="30">
+
+    <label class="popup-bg__label">Social name
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasSocialName.length > 0">
+        {{errorMsg.hasSocialName}}
+      </span>
+    </label>
+    <input type="text" class="popup-bg__input" [(ngModel)]="itemToUpdate.item.socialName" maxlength="50">
+
+    <label class="popup-bg__label">City
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasCity.length > 0">
+        {{errorMsg.hasCity}}
+      </span>
+    </label>
+    <input type="text" class="popup-bg__input" [(ngModel)]="itemToUpdate.item.adress.city" maxlength="50">
+
+    <label class="popup-bg__label">State
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasState.length > 0">
+        {{errorMsg.hasState}}
+      </span>
+    </label>
+    <input type="text" class="popup-bg__input" [(ngModel)]="itemToUpdate.item.adress.state" maxlength="30">
+
+    <label class="popup-bg__label">Country
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasCountry.length > 0">
+        {{errorMsg.hasCountry}}
+      </span>
+    </label>
+    <input type="text" class="popup-bg__input" [(ngModel)]="itemToUpdate.item.adress.country" maxlength="30">
+
+    <label class="popup-bg__label">Phone number
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasPhone.length > 0">
+        {{errorMsg.hasPhone}}
+      </span>
+    </label>
+    <input type="tel" class="popup-bg__input" [(ngModel)]="itemToUpdate.item.contact.phone" maxlength="20">
+
+    <label class="popup-bg__label">E-mail
+      <span class="popup-bg__error-msg" *ngIf="errorMsg.hasEmail.length > 0">
+        {{errorMsg.hasEmail}}
+      </span>
+    </label>
+    <input type="email" class="popup-bg__input" [(ngModel)]="itemToUpdate.item.contact.email" maxlength="40">
+
+    <div class="input-container">
+      <div class="input-container__box">
+          <label class="input-container__label">Date of birth
+            <span class="popup-bg__error-msg" *ngIf="errorMsg.hasDateOfBirth.length > 0">
+              {{errorMsg.hasDateOfBirth}}
+            </span>
+          </label>
+          <input type="date" style="width: 130px;" class="input-box" [(ngModel)]="itemToUpdate.item.dateOfBirth">
+      </div>
+      <div class="input-container__box">
+          <label class="input-container__label">Date of initiation
+            <span class="popup-bg__error-msg" *ngIf="errorMsg.hasDateOfInitiation.length > 0">
+              {{errorMsg.hasDateOfInitiation}}
+            </span>
+          </label>
+          <input type="date" style="width: 130px;" class="input-box" [(ngModel)]="itemToUpdate.item.dateOfInitiation">
+      </div>
+    </div>
+
+    <div class="popup-button-box">
+      <button class="popup-button-box__button" (click)="updateRegister()">Update</button>
+      <button class="popup-button-box__button" (click)="toggle.updateRegister.hide()">Cancel</button>
+    </div>
+  </div>
+
+  <div class="blur-bg" *ngIf="toggle.updateConfirmation.status">
+    <!-- Pop-up de confirmação do update -->
+    <div class="confirmation-popup" *ngIf="toggle.updateConfirmation.status">
+      <p>Devotee successfully updated!</p>
+      <div class="popup-button-box">
+        <button class="popup-button-box__button" (click)="toggle.updateConfirmation.hide()">OK</button>
+      </div>
+    </div>
+  </div>
+
+</section>

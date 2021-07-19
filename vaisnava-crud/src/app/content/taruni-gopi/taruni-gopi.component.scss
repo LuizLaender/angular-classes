@@ -1,0 +1,231 @@
+@import "~variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+button {
+  background-color: #F65A46;
+
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  cursor: pointer;
+  color: white;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+button:hover {
+  background-color: #fa7d4b;
+}
+
+input {
+  border: 1px solid #3d311b4b;
+  height: 25px;
+  cursor: text;
+}
+
+.section {
+  background-image: url(../../../assets/taruni-gopi/background.jpg);
+
+  height: $height-less-header;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Roboto', sans-serif;
+
+  @include mobile(portrait) {
+    height: calc(100vh - 4rem);
+  }
+
+  @include mobile(landscape) {
+    height: calc(100vw - 4rem);
+  }
+}
+
+.logo {
+  margin-bottom: 30px;
+}
+
+.homepage-buttons-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
+  height: auto;
+
+  &__button {
+    width: auto;
+    height: auto;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 8px;
+  }
+}
+
+.popup-bg {
+  background-color: #ffffff;
+  position: absolute;
+  top: calc(3% + #{$header-height});
+  width: 35vw;
+  height: 75%;
+  border-radius: 3px;
+  padding: 30px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.219);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+
+  @include mobile(portrait) {
+    width: 80vw;
+    height: 75%;
+  }
+
+  @include mobile(landscape) {
+    width: 80vw;
+    height: 75%;
+  }
+
+  &__label {
+    font-size: 15px;
+    align-self: flex-start;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  &__error-msg {
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+    color: red;
+    font-weight: bold;
+  }
+
+  &__input {
+    width: 100%;
+    height: 4vh;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    outline: none;
+    border: 1px solid #3d311b4b;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+  }
+
+  &__scrollbox {
+    background-color: lightgoldenrodyellow;
+    width: 100%;
+    height: 500px;
+    border-radius: 5px;
+    overflow: auto;
+    padding: 10px;
+
+    text-align: left;
+    font-size: 12px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+
+    &__items {
+      background-color: white;
+      border: 1px solid #3d311b36;
+      width: auto;
+      padding: 10px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.input-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+  }
+
+  &__label {
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+}
+
+.popup-button-box {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  &__button {
+    width: auto;
+    height: auto;
+    margin: 10px;
+    padding: 12px;
+
+  }
+}
+
+.blur-bg {
+  position: fixed;
+  top: 0rem;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #2523233a;
+}
+
+.confirmation-popup {
+  background-color: white;
+  position: absolute;
+  margin: auto;
+  width: auto;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.219);
+
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fa7d4b93; 
+}
